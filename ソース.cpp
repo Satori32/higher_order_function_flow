@@ -16,12 +16,13 @@ std::uint8_t SendMessage(const std::string& S) {
 	std::cout <<"QUSETION!:" << S << std::endl;
 
 	SEND S;
-	std::mt19937 mt;
-	return mt() % AC;
+	std::random_device rd;
+	//std::mt19937 mt;
+	return rd() % AC;
 }
 
 std::string AnswerByString() {
-	return "Answer!";
+	return "Answer! X";
 }
 std::vector<std::string> AnswerByStrings() {
 	return { "Answer!" ,"hoge!"};
@@ -30,7 +31,7 @@ std::intmax_t AnswerByNumber() {
 	return 42;
 }
 bool AnswerByBool() {
-	return (std::mt19937()()) % 2 ? true : false;
+	return (std::random_device()()) % 2 ? true : false;
 }
 int main() {
 	std::string s = "MyQuestion!";
@@ -58,7 +59,7 @@ int main() {
 		}
 		case 3: {
 			INCOMING auto X = AnswerByBool();
-			A.push_back(std::to_string(X));
+			A.push_back(X?"True":"False");
 			break;
 		}
 		default:
